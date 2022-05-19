@@ -1,0 +1,712 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Welcome to Rust - TEDxSoftDev Rust</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html" class="active">Welcome to Rust</a></li><li class="chapter-item expanded affix "><a href="about.html">About</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">TEDxSoftDev Rust</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="welcome-to-rust"><a class="header" href="#welcome-to-rust">Welcome to Rust</a></h1>
+<p>So...what is Rust?</p>
+<p>Rust is a general-purpose multi-paradigm systems-level programming language,
+often used as an alternative to <code>C</code> and <code>C++</code>, with a focus on low level
+<strong>performance</strong> without sacrificing memory <strong>safety</strong>, and it achieves this via
+an idea called single <strong>ownership</strong>, which is enforced by the compiler through
+the borrow checker.</p>
+<p><em>Phew</em>, a lot of that likely went over your head so let me paraphrase it for you.</p>
+<h2 id="fast-reliable-productive---pick-three"><a class="header" href="#fast-reliable-productive---pick-three">Fast, Reliable, Productive - Pick Three</a></h2>
+<p>In short, Rust allows the programmer to write high level readable code while the
+compiler does a lot of the heavy lifting, turning the source code into into
+extremely performant machine code with speeds comparable to low level languages
+like <code>C</code> and <code>C++</code>.</p>
+<h2 id="considering-rust"><a class="header" href="#considering-rust">Considering Rust</a></h2>
+<p>If you haven't caught the memo yet, Rust is fast, <em>REALLY</em> fast, which makes it
+a great choice for programs that need to be performant, like operating systems,
+game engines, backend servers, databases, the list can go on and on.</p>
+<p>You don't even necessarily have to make your entire program in Rust, you can
+keep writing your nice dynamically typed code and have it interact with performant
+Rust code in specific performance critical areas (the exact way you'd do this
+differs from language to language so I won't be going into detail here).</p>
+<h2 id="wasm"><a class="header" href="#wasm">WASM?</a></h2>
+<p>Also, given Rust's minimal runtime, it tends to have a decently compact binary
+size, which currently makes it a good choice for Web Assembly for those of you
+into that.</p>
+<hr />
+<h1 id="hello-world"><a class="header" href="#hello-world">Hello, World!</a></h1>
+<p>Alright, now that we've gotten the introductions out of the way, let's get right
+into some code examples.</p>
+<p>Whenever you introduce a new language, you're basically expected to show a
+<code>Hello, World!</code> example, so here it is:</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    println!(&quot;Hello, World!&quot;);
+}
+</code></pre></pre>
+<p>Simple enough.</p>
+<blockquote>
+<p>Note: the <code>!</code> after <code>println</code> denotes that <code>println</code> is actually a macro, not a
+function. Macros are actually quite a complex topic in Rust, so they won't be
+covered in-depth here.</p>
+</blockquote>
+<h2 id="running-on-local"><a class="header" href="#running-on-local">Running on local</a></h2>
+<p>If you want to run this on your own machine, you need to first install the
+<a href="https://www.rust-lang.org/tools/install">rust compiler</a> and after pasting
+the code in a file like <code>main.rs</code>, execute the following commands:</p>
+<pre><code class="language-console">$ rustc main.rs
+$ ./main
+</code></pre>
+<p>Or if on Windows:</p>
+<pre><code class="language-cmd">&gt; rustc main.rs
+&gt; .\main.exe
+</code></pre>
+<hr />
+<h1 id="variables"><a class="header" href="#variables">Variables</a></h1>
+<p>Variables in Rust can be declared with the <code>let</code> keyword:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>let x = 12;
+println!(&quot;{}&quot;, x);
+<span class="boring">}
+</span></code></pre></pre>
+<p>The <code>println!</code> macro can be used to print values by inserting double curly
+braces <code>{}</code> into the format string.</p>
+<h2 id="mutability"><a class="header" href="#mutability">Mutability</a></h2>
+<p>The following example won't run:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>let x = 12;
+println!(&quot;x is {}&quot;, x);
+
+x = 3;
+println!(&quot;x is now {}&quot;, x);
+<span class="boring">}
+</span></code></pre></pre>
+<p>In Rust, all variables are <em>immutable</em> by default. This means, when you declare
+a variable with <code>let</code>, you can guarantee that code later on will never be able
+to modify the original value no matter what.</p>
+<p>To mark a variable is <em>mutable</em>, add the <code>mut</code> keyword:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>let mut x = 12;
+println!(&quot;x is {}&quot;, x);
+
+x = 3;
+println!(&quot;x is now {}&quot;, x);
+<span class="boring">}
+</span></code></pre></pre>
+<hr />
+<h1 id="arrays"><a class="header" href="#arrays">Arrays</a></h1>
+<p>Creating an array in Rust is straight forward:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>let x = [1, 2, 3, 4, 5];
+<span class="boring">}
+</span></code></pre></pre>
+<p>To print an array, you need to format it in <em>debug</em> mode:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span><span class="boring">let x = [1, 2, 3, 4, 5];
+</span>println!(&quot;{:?}&quot;, x);
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="indexing"><a class="header" href="#indexing">Indexing</a></h2>
+<p>Indexing and mutating works as expected:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>let mut x = [1, 2, 3, 4, 5];
+println!(&quot;{}&quot;, x[1]);
+
+x[1] = 100;
+println!(&quot;{:?}&quot;, x);
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="fixed-size"><a class="header" href="#fixed-size">Fixed size</a></h2>
+<p>One limitation, however, is that arrays in Rust are <em>fixed sized</em>, meaning they
+can never grow or shrink. To create a dynamically sized list of items in rust,
+we need to use a <code>Vec</code>.</p>
+<hr />
+<h1 id="vectors"><a class="header" href="#vectors">Vectors</a></h1>
+<p>Vectors in Rust can be created with the <code>Vec::new</code> function:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>let v: Vec&lt;i32&gt; = Vec::new();
+<span class="boring">}
+</span></code></pre></pre>
+<p>To add elements to it, use the <code>Vec::push</code> method:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>let mut v = Vec::new();
+v.push(1);
+v.push(2);
+v.push(3);
+
+println!(&quot;{:?}&quot;, v);
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="vec-macro"><a class="header" href="#vec-macro"><code>vec!</code> macro</a></h2>
+<p>For conciseness, you may wish to use the <code>vec!</code> macro.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>let v = vec![1, 2, 3];
+println!(&quot;{:?}&quot;, v);
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
+<p>Here's a function that takes a <code>Vec</code> as an argument:</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let v = vec![1, 2, 3];
+    print_first(v);
+}
+
+fn print_first(v: Vec&lt;i32&gt;) {
+    println!(&quot;{}&quot;, v[0]);
+}
+</code></pre></pre>
+<p>But, the code no longer compiles if we try to modify the vector after:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>let mut v = vec![1, 2, 3];
+print_first(v);
+
+v.push(4);
+println!(&quot;{:?}&quot;, v);
+<span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn print_first(v: Vec&lt;i32&gt;) {
+</span><span class="boring">   println!(&quot;{}&quot;, v[0]);
+</span><span class="boring">}
+</span></code></pre></pre>
+<p>To better understand the error and fix it, we need to first learn about
+<strong>ownership</strong>!</p>
+<hr />
+<h1 id="ownership"><a class="header" href="#ownership">Ownership</a></h1>
+<p>Rust's poster child feature is ownership (and borrowing), and is the biggest
+hurdle that new Rustaceans must overcome before becoming truly comfortable with
+the language.</p>
+<p>Ownership has three* main rules:</p>
+<ol>
+<li>Every value has an &quot;owner&quot;</li>
+<li>Every value can be &quot;moved&quot;</li>
+<li>Every value can be &quot;borrowed&quot;</li>
+</ol>
+<p>I'll go in depth about each rule with an analogy and a code example along with it.</p>
+<blockquote>
+<p>*Note: The three rules listed here are not entirely complete, as there are a few
+more rules pertaining to mutable vs immutable borrows, but it won't be covered
+here.</p>
+<p>The Rust Book goes into more detail about the full rules of ownership if you're
+interested.</p>
+</blockquote>
+<h2 id="owning"><a class="header" href="#owning">Owning</a></h2>
+<p>In Rust, every value has a single owner who is responsible for it.</p>
+<p><img src="./img/bob-plant.png" alt="bob-plant" /></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>// The variable `bob` owns the vector
+let bob = vec![1, 2, 3];
+<span class="boring">}
+</span></code></pre></pre>
+<p>The owner can do whatever they want with the value.</p>
+<p><img src="./img/bob-feed.png" alt="bob-feed" /></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>let mut bob = Vec::new();
+
+// The vector can be mutated
+bob.push(1);
+bob.push(2);
+println!(&quot;{:?}&quot;, bob);
+<span class="boring">}
+</span></code></pre></pre>
+<p>But, if the owner disappears...</p>
+<p><img src="./img/bob-dead.png" alt="bob-dead" /></p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let mut bob = Vec::new();
+    bob.push(1);
+    bob.push(2);
+} // Once `bob` goes &quot;out of scope&quot;
+</code></pre></pre>
+<p>...the value will be disposed of.</p>
+<p><img src="./img/bob-plant-dead.png" alt="bob-plant-dead" /></p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let mut bob = Vec::new();
+    bob.push(1);
+    bob.push(2);
+
+    // The value gets implicitly destroyed
+    drop(bob);
+}
+</code></pre></pre>
+<blockquote>
+<p>Note: in the case of <code>Vec</code>, &quot;destroying&quot; it means deallocating the memory from
+the heap.</p>
+</blockquote>
+<h2 id="moving"><a class="header" href="#moving">Moving</a></h2>
+<p>Ownership can be transfered.</p>
+<p><img src="./img/bob-dylan-move.png" alt="bob-dylan-move" /></p>
+<pre><pre class="playground"><code class="language-rust">fn take(v: Vec&lt;i32&gt;) {
+    // Does stuff with `v`
+}
+
+<span class="boring">fn main() {
+</span>let bob = vec![1, 2, 3];
+
+// Give bob's value to the `take` function
+take(bob);
+<span class="boring">}
+</span></code></pre></pre>
+<p>or</p>
+<pre><pre class="playground"><code class="language-rust">fn give() -&gt; Vec&lt;i32&gt; {
+    // Returns a `Vec`
+<span class="boring">    vec![1, 2, 3]
+</span>}
+
+<span class="boring">fn main() {
+</span>let dylan = give();
+<span class="boring">}
+</span></code></pre></pre>
+<p>The old owner can no longer access the value.</p>
+<p><img src="./img/bob-nofeed.png" alt="bob-nofeed" /></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>let mut bob = vec![1, 2, 3];
+take(bob);
+
+// The vector CANNOT be accessed anymore
+bob.push(4);
+println!(&quot;{:?}&quot;, bob);
+<span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn take(v: Vec&lt;i32&gt;) { }
+</span></code></pre></pre>
+<h2 id="borrowing"><a class="header" href="#borrowing">Borrowing</a></h2>
+<p>Values can be borrowed without transferring ownership.</p>
+<p><img src="./img/bob-dylan-borrow.png" alt="bob-dylan-borrow" /></p>
+<pre><pre class="playground"><code class="language-rust">// Function takes a reference as a parameter (&amp;T)
+fn borrow(v: &amp;Vec&lt;i32&gt;) {
+    // Does stuff with `v`
+}
+
+<span class="boring">fn main() {
+</span>let mut bob = vec![1, 2, 3];
+
+// Give a reference (&amp;) to bob's value
+borrow(&amp;bob);
+
+bob.push(4); // Still okay!
+println!(&quot;{:?}&quot;, bob);
+<span class="boring">}
+</span></code></pre></pre>
+<p>Immutable borrows (&amp;) &quot;can look, but cannot touch.&quot;</p>
+<p><img src="./img/dylan-nofeed.png" alt="dylan-nofeed" /></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() { borrow(&amp;vec![1, 2, 3]); }
+</span>fn borrow(v: &amp;Vec&lt;i32&gt;) {
+    println!(&quot;{:?}&quot;, v); // Okay!
+}
+</code></pre></pre>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() { borrow(&amp;vec![1, 2, 3]); }
+</span>fn borrow(v: &amp;Vec&lt;i32&gt;) {
+    v.push(1); // ERROR!
+}
+</code></pre></pre>
+<p>Mutable borrows (&amp;mut) CAN modify the value.</p>
+<p><img src="./img/dylan-feed.png" alt="dylan-feed" /></p>
+<pre><pre class="playground"><code class="language-rust">// Function takes a mutable reference as a parameter (&amp;mut T)
+fn change(v: &amp;mut Vec&lt;i32&gt;) {
+    v.push(4);
+}
+
+<span class="boring">fn main() {
+</span>let mut bob = vec![1, 2, 3];
+
+// Give a mutable reference
+change(&amp;mut bob);
+
+// Okay!
+bob.push(5);
+println!(&quot;{:?}&quot;, bob);
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>Note: if <code>bob</code> was not declared as a <code>mut</code> variable, it couldn't be mutably
+borrowed.</p>
+<p>This ensures that, to anyone reading the code, if a variable is not declared
+as mutable, it will <strong>NEVER</strong> be updated under any circumstance.</p>
+<p>(this is technically untrue if we were to dive into the spooky world of
+<em>unsafe Rust</em>, but that's not going to be talked about here)</p>
+</blockquote>
+<h2 id="fix-me"><a class="header" href="#fix-me">Fix me!</a></h2>
+<p>Let's go back to our previous broken code, but this time with a new understanding
+of ownership and borrowing.</p>
+<p>Try to fix this code such that the function <code>print_first</code> borrows the vector
+rather than taking the ownership of it.</p>
+<pre><pre class="playground"><code class="language-rust editable">// I'm editable!!
+fn main() {
+    let mut v = vec![1, 2, 3];
+    print_first(v);
+
+    v.push(4);
+    println!(&quot;{:?}&quot;, v);
+}
+
+fn print_first(v: Vec&lt;i32&gt;) {
+    println!(&quot;{}&quot;, v[0]);
+}
+</code></pre></pre>
+<p>If you successfully did it, you should get the output:</p>
+<pre><code>1
+[1, 2, 3, 4]
+</code></pre>
+<hr />
+<h1 id="options"><a class="header" href="#options">Options</a></h1>
+<p>In Rust, the <code>Option&lt;T&gt;</code> type is often used to refer to a value that
+<em>may or may not</em> exist.</p>
+<p><code>Option&lt;T&gt;</code> may have two variations:</p>
+<ul>
+<li><code>Some(T)</code> for when a value is present</li>
+<li><code>None</code> for when a value is absent</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>let mut maybe = Some(12);
+println!(&quot;{:?}&quot;, maybe);
+
+maybe = None;
+println!(&quot;{:?}&quot;, maybe);
+<span class="boring">}
+</span></code></pre></pre>
+<p>A built-in function in Rust that returns an <code>Option&lt;T&gt;</code> is <code>Vec::pop</code>, which
+removes and returns the last value of a vector:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>let mut v = vec![1, 2];
+
+println!(&quot;{:?}&quot;, v.pop());
+println!(&quot;{:?}&quot;, v.pop());
+println!(&quot;{:?}&quot;, v.pop());
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p><strong>Why not null?</strong></p>
+<p>A common question is &quot;Why not just use <code>null</code> like other languages?&quot; and the
+biggest reason is to prevent &quot;null dereferencing&quot; or <code>NullPointerExceptions</code>.</p>
+<p>In a language like Java where objects can be set to <code>null</code> whenever they want,
+you often don't know when you should have null-checks or not, so you usually
+just put them everywhere or risk a runtime exception.</p>
+<p>In Rust, however, that isn't necessary!</p>
+<p>If a value is of type <code>T</code>, you know it definitely exists, and so you have no
+fear of a possible null dereference.</p>
+<p>If a value is of type <code>Option&lt;T&gt;</code>, the Rust compiler forces you to do the
+check because it may or may not be a valid value, meaning you run no risk
+of a runtime error.</p>
+</blockquote>
+<h1 id="match"><a class="header" href="#match">Match</a></h1>
+<p>So, let's say we wanted to do something if a value is <code>Some</code> and another thing
+if it is <code>None</code>, how do we do that? With pattern matching!</p>
+<p>In Rust, the <code>match</code> keyword allows you to match a given value against a specified
+list of patterns:</p>
+<pre><pre class="playground"><code class="language-rust editable">fn main() {
+    let x = Some(12);
+    match x {
+        // Matching a specific value
+        Some(10) =&gt; println!(&quot;10 is the magic number&quot;),
+        // Binding a value to a variable
+        Some(n) =&gt; println!(&quot;We have the number {}&quot;, n),
+        None =&gt; println!(&quot;We don't have a number&quot;),
+    }
+}
+</code></pre></pre>
+<p>The above code is editable. Try changing the value of <code>x</code> or add your own patterns
+and see what happens!</p>
+<h2 id="alternative-patterns"><a class="header" href="#alternative-patterns">Alternative Patterns</a></h2>
+<p>The pipe <code>|</code> can be used to create a pattern that matches multiple things:</p>
+<pre><pre class="playground"><code class="language-rust editable">fn main() {
+    let x = Some(12);
+    match x {
+        Some(10 | -10) =&gt; println!(&quot;10 is the magic number&quot;),
+        Some(n) =&gt; println!(&quot;We have the number {}&quot;, n),
+        None =&gt; println!(&quot;We don't have a number&quot;),
+    }
+}
+</code></pre></pre>
+<h2 id="wildcard"><a class="header" href="#wildcard">Wildcard</a></h2>
+<p>The wildcard pattern <code>_</code> can be used to match <em>anything</em>:</p>
+<pre><pre class="playground"><code class="language-rust editable">fn main() {
+    let x = Some(12);
+    match x {
+        Some(10 | -10) =&gt; println!(&quot;10 is the magic number&quot;),
+        _ =&gt; println!(&quot;We didn't get 10&quot;),
+    }
+}
+</code></pre></pre>
+<h1 id="iterators"><a class="header" href="#iterators">Iterators</a></h1>
+<p>Iterators in Rust can be used to, well, iterate over a stream of values.
+Alternatively, they can be modified to create a new iterator or consumed
+to generate a single value.</p>
+<h2 id="iter"><a class="header" href="#iter"><code>.iter()</code></a></h2>
+<p>Arrays and vectors can both be easily turned into iterators with the <code>iter</code> method:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>let arr = [1, 2, 3];
+arr.iter();
+
+let v = vec![1, 2, 3];
+v.iter();
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="looping"><a class="header" href="#looping">Looping</a></h2>
+<p>Iterators can be looped over with the humble <code>for</code>-loop</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>let arr = [1, 2, 3];
+for i in arr.iter() {
+    println!(&quot;{}&quot;, i);
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="ranges"><a class="header" href="#ranges">Ranges</a></h2>
+<p>Simple range iterators can be created using the syntax <code>n..m</code> for all numbers
+<code>n</code> to <code>m</code> non-inclusive:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>for i in 0..10 {
+    println!(&quot;{}&quot;, i);
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="sum"><a class="header" href="#sum"><code>.sum()</code></a></h2>
+<p>Iterators have a <code>sum</code> method to add up all of the elements in the iterator:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>let result: i32 = (1..10).sum();
+println!(&quot;{}&quot;, result);
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="map"><a class="header" href="#map"><code>.map()</code></a></h2>
+<p>Iterators have a <code>map</code> method which applies a function to every element in the iterator:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>for i in (0..10).map(|n| n * n) {
+    println!(&quot;{}&quot;, i);
+}
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>Note: <code>|n| n * n</code> is an example of an anonymous function in Rust.</p>
+<p>It could be roughly translated as:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {}
+</span>fn square(n: i32) -&gt; i32 {
+    n * n
+}
+</code></pre></pre>
+</blockquote>
+<h2 id="quiz-time"><a class="header" href="#quiz-time">Quiz time!</a></h2>
+<p>You hopefully now have a general understanding of what iterators are and what they
+can do. The next few examples will show of some more tricks, but don't just skim
+right through them. Try and predict what the output of them might be, and see if
+you're correct after taking a guess.</p>
+<pre><pre class="playground"><code class="language-rust editable">fn f(n: u32) -&gt; u32 {
+    (1..=n).product()
+}
+
+fn main() {
+    println!(&quot;{}&quot;, f(1));
+    println!(&quot;{}&quot;, f(2));
+    println!(&quot;{}&quot;, f(5));
+}
+</code></pre></pre>
+<blockquote>
+<p>Note: <code>n..=m</code> is how you'd create a range that goes from <code>n</code> to <code>m</code> <em>inclusive</em>.</p>
+</blockquote>
+<pre><pre class="playground"><code class="language-rust editable">fn main() {
+    let n = (0..100)
+        .filter(|n| n % 2 == 0)
+        .count();
+
+    println!(&quot;{}&quot;, n);
+}
+</code></pre></pre>
+<pre><pre class="playground"><code class="language-rust editable">fn main() {
+    let values: Vec&lt;i32&gt; = (0..100)
+        .map(|n| n * n)
+        .collect();
+
+    println!(&quot;{}&quot;, values[1]);
+    println!(&quot;{}&quot;, values[2]);
+    println!(&quot;{}&quot;, values[20]);
+}
+</code></pre></pre>
+<blockquote>
+<p>Note: in this case, <code>collect</code> collects all of the values of the iterator into a <code>Vec</code>.</p>
+</blockquote>
+<h1 id="appendix"><a class="header" href="#appendix">Appendix</a></h1>
+<p>Congrats! You've reached the end! These were all of the examples that I was able to
+fit in the final presentation (plus a little more).</p>
+<p>If you want to learn more about Rust, I highly recomend reading
+<a href="https://doc.rust-lang.org/book/">The Rust Book</a>. It goes in waaaay more detail than
+I did here, so do please check it out if you're interested.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+                            <a rel="next" href="about.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+                    <a rel="next" href="about.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+        <script src="ace.js" type="text/javascript" charset="utf-8"></script>
+        <script src="editor.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mode-rust.js" type="text/javascript" charset="utf-8"></script>
+        <script src="theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+        <script src="theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

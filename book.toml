@@ -1,9 +1,0 @@
-[book]
-authors = ["Cabidge"]
-language = "en"
-multilingual = false
-src = "src"
-title = "TEDxSoftDev Rust"
-
-[output.html.playground]
-editable = true
